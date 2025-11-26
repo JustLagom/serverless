@@ -1,10 +1,3 @@
-//示例代码
-//请自行补齐所需参数-代码19行起，uuid，项目域名，项目端口
-//补充完毕请自行混淆
-//替代index.js文件中代码
-//执行actions
-//获取docker镜像
-//部署
 const os = require('os');
 const http = require('http');
 const fs = require('fs');
