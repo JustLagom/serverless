@@ -1,11 +1,10 @@
 //示例代码
-//请自行补齐所需参数，uuid，项目域名，项目端口
+//请自行补齐所需参数-代码19行起，uuid，项目域名，项目端口
 //补充完毕请自行混淆
 //替代index.js文件中代码
 //执行actions
 //获取docker镜像
 //部署
-
 const os = require('os');
 const http = require('http');
 const fs = require('fs');
@@ -16,16 +15,18 @@ const crypto = require('crypto');
 const { Buffer } = require('buffer');
 const { exec, execSync } = require('child_process');
 const { WebSocket, createWebSocketStream } = require('ws');
+//补全参数
 const UUID = process.env.UUID || 'b3a053a4-062e-49fd-f98f-b6014dd7d4a9'; // 运行哪吒v1,在不同的平台需要改UUID,否则会被覆盖
-const NEZHA_SERVER = process.env.NEZHA_SERVER || '';       // 哪吒v1填写形式：nz.abc.com:8008   哪吒v0填写形式：nz.abc.com
-const NEZHA_PORT = process.env.NEZHA_PORT || '';           // 哪吒v1没有此变量，v0的agent端口为{443,8443,2096,2087,2083,2053}其中之一时开启tls
-const NEZHA_KEY = process.env.NEZHA_KEY || '';             // v1的NZ_CLIENT_SECRET或v0的agent端口                
 const DOMAIN = process.env.DOMAIN || 'modern-rene-2025-11-26-da6b97d2.koyeb.app';       // 填写项目域名
 const AUTO_ACCESS = process.env.AUTO_ACCESS || false;      // 是否开启自动访问保活,false为关闭,true为开启,需同时填写DOMAIN变量
 const WSPATH = process.env.WSPATH || UUID.slice(0, 8);     // 节点路径，默认获取uuid前8位
 const SUB_PATH = process.env.SUB_PATH || 'sub';            // 获取节点的订阅路径
 const NAME = process.env.NAME || '';                       // 节点名称
 const PORT = process.env.PORT || 3000;                     // http和ws服务端口
+//哪吒可留空不填
+const NEZHA_SERVER = process.env.NEZHA_SERVER || '';       // 哪吒v1填写形式：nz.abc.com:8008   哪吒v0填写形式：nz.abc.com
+const NEZHA_PORT = process.env.NEZHA_PORT || '';           // 哪吒v1没有此变量，v0的agent端口为{443,8443,2096,2087,2083,2053}其中之一时开启tls
+const NEZHA_KEY = process.env.NEZHA_KEY || '';             // v1的NZ_CLIENT_SECRET或v0的agent端口 
 
 let ISP = '';
 const GetISP = async () => {
